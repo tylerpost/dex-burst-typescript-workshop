@@ -1,6 +1,25 @@
 # dex-burst-typescript-workshop
 
-Sample code
+Exercise: Part 1
+
+1) Create a new node project and install typescript
+2) Create a new file `DeliveryPromiseService.ts`
+3) Write a program that will return a delivery date for a given zip
+
+   - _Parse the sample file_
+   - _Define an interface for a schedule_
+   - _return a delivery date for a given zip_
+
+4) Test the program, using Jest
+    - _Install with:_ `npm i jest ts-jest @types/jest`
+    - _Configure typescript with:_ `npx ts-jest config:init`
+    - _run test files with:_ `npx jest <file>` _(hint: add to your package.json)_
+    - https://jestjs.io/docs/getting-started
+    - https://jestjs.io/docs/asynchronous
+
+
+
+Sample code below:
 
 ### Setup
 ```node
@@ -20,6 +39,9 @@ npx tsc index.ts
 node index.js
 ```
 
+### package.json
+
+`start: npx tsc & node index.js`
 
 ### Primitives
 
@@ -46,11 +68,11 @@ const myName = `My name is ${first} ${last}.`;
 
 ### Functions
 ```ts
-function exampleFunction(name: string) {
-  return "Hello" + name;
+function exampleFunction(name: string): void {
+  "Hello" + name;
 }
 
-const arrowFunction = () => {
+const arrowFunction = (): string => {
   return "Hello world";
 }
 
@@ -73,21 +95,26 @@ numbers.map(number => number + 1)
 ### Objects
 ```ts
 const user = {
-  name: 'Tyler',
+  firstName: 'Tyler',
   color: 'red',
 };
 
-console.log(user.name)
+console.log(user.firstName)
 
 // destructuring
-const { name, color } = user
-console.log(occupation)
+const { firstName, color } = user;
+console.log(firstName);
 
 // spread
 const fullUser = {
   ...user
   company: 'Shopify
-}
+};
+
+//shorthand
+const myKey = "asdf";
+const myObject = { mykey, }
+
 ```
 
 
@@ -106,7 +133,7 @@ import { myFunction } from './file1'
 
 ### Classes
 
-```
+```ts
 class Car
   color: string
   
@@ -130,11 +157,39 @@ class Car
 const myCar = new Car('red')
 ```
 
+### Typescript
 
+```ts
+// Enums
+export enum Color {
+  Red = "red",
+  Blue = "blue"
+}
 
+// Union Types
+export type vehicles = 'car' | 'bus' | 'truck';
+
+// Interfaces
+export interface User {
+  name: string;
+  color: Color;
+  vehicle?: vehicle
+}
+
+// Type Generics
+// Usually represented by <T>, possibly <T, U, V>
+Array<T>
+
+// escape hatches
+function(arg1: any) {
+  return arg1 as any;
+}
+```
 
 ### Async
 
+
+Javascript code doesn't necessary execute in the order of the lines
 ```ts
 const asnycExample = () => {
   console.log(1)
@@ -148,5 +203,61 @@ const asnycExample = () => {
 
 asnycExample()
 ```
+
+Promises represent a value that will eventually be resolved.
+The `.then` and `.catch` methods allow us to process results of promises
+```ts
+import axios from 'axios'
+function getUsers() {
+  axios.get("https://reqres.in/api/users")
+    .then((reponse) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error.response.data)
+    })
+}
+
+// You can also handle promises with the Async keyword
+async function getUsers2() {
+  try {
+    result = await axios.get("https://reqres.in/api/users")
+    console.log(result.data)
+  } catch (e) {
+    console.log(e.response.data)
+  }
+}
+
+
+// Use Promise.all to process multiple things at the same time
+async function asnycExample4() {
+  const [res1, res2] = await Promise.all([
+    axios.get('https://reqres.in/api/users/1'),
+    axios.get('https://reqres.in/api/users/2')
+  ]);
+}
+```
+
+
+### Reading files
+```
+import fs from 'fs';
+
+async function main() {
+  const fileContents = await fs.promises.readFile('./content.txt')
+  console.log(fileContents.toString())
+}
+
+main().catch(err => console.log(err))
+```
+
+
+
+
+
+
+
+
+
 
 
