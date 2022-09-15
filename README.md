@@ -1,6 +1,6 @@
 # dex-burst-typescript-workshop
 
-Exercise: Part 1
+### Exercise: Part 1
 
 1) Create a new node project and install typescript
 2) Create a new file `DeliveryPromiseService.ts`
@@ -17,6 +17,12 @@ Exercise: Part 1
     - https://jestjs.io/docs/getting-started
     - https://jestjs.io/docs/asynchronous
 
+### Exercise: Part 2
+
+1) Setup a Koa server
+2) Expose an API endpoint to get a promise date for a zip code
+3) Add middleware to log the request
+4) Add a new POST endpoint to add a promise to a schedule
 
 
 Sample code below:
