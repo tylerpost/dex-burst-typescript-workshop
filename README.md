@@ -254,7 +254,32 @@ main().catch(err => console.log(err))
 
 
 
+### Setup Koa
+`npm i koa @types/koa`
 
+```ts
+import Koa from 'koa'
+const app = new Koa();
+
+app.use((ctx) => {
+  ctx.body = "Hello World"
+})
+
+app.listen(3000)
+```
+
+`npm i @koa/router @types/koa__router`
+
+```ts
+import Router from @koa/router
+const router = new Router()
+
+router.get('/hello', (ctx) => {
+  ctx.body = 'World'
+})
+
+app.use(router.routes)
+```
 
 
 
