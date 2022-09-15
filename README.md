@@ -284,7 +284,7 @@ router.get('/hello', (ctx) => {
   ctx.body = 'World'
 })
 
-app.use(router.routes)
+app.use(router.routes())
 ```
 
 
